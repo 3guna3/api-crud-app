@@ -19,7 +19,13 @@ class V1::PostsController < ApplicationController
     end
   end
 
-  def update; end
+  def update
+    if @post.update(post_params)
+      render json: @pst
+    else
+      render json: @post.errors, status: :unprocessable_entity
+    end
+  end
 
   def destroy; end
 
